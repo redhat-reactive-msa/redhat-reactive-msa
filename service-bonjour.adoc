@@ -1,0 +1,16 @@
+## Deploy bonjour (NodeJS) microservice
+
+The bonjour microservice is developed in JAvaScript and runs on top of Node.JS. It interacts with the vert.x event bus using the SockJS bridge exposed by the frontend application.
+
+To deploy the project, you need to use the `oc` CLI:
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/bonjour
+cd bonjour/
+oc new-build --binary --name=bonjour -l app=bonjour
+npm install; oc start-build bonjour --from-dir=. --follow
+oc new-app bonjour -l app=bonjour
+----
+
+You should now have the bonjour microservice deployed and running.
