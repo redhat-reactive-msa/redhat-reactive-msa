@@ -1,0 +1,24 @@
+# Redhat Reactive Microservice demo
+
+This demo explains how you can build reactive microservices with Vert.x and Node.JS. The demo runs on Openshift v3.
+
+The microservices interacts using the vert.x event bus. A frontend service offers a UI to runs the different scenarii:
+
+* the browser calls all the services
+* the browser calls a first service, calling a secnd one, callign a third one...
+* the browser calls a REST endpoint provided by an API gateway aggregating the response of the different services
+
+The different microservices are:
+
+* Frontend - host the main UI
+* Hello - developed in Java
+* Ola - developed in Groovy
+* Hola - developed in JavaScript
+* Namaste - developed in Ruby
+* Bonjour - developed in JavaScript, and running on Node.JS
+
+toc::[]
+
+include::cdk-prepare.adoc[]
+TODO....
+include::service-bonjour.adoc[]
