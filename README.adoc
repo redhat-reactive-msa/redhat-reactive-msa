@@ -47,6 +47,6 @@ include::service-namaste.adoc[]
 
 include::service-bonjour.adoc[]
 
-include::simulating-failure.adoc[]
+include::simulating-failures.adoc[]
 
 include::scalability.adoc[]

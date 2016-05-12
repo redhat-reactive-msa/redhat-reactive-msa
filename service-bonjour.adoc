@@ -1,4 +1,4 @@
-## Deploy bonjour (NodeJS) microservice
+## Deploy the bonjour (NodeJS) microservice
 
 The bonjour microservice is developed in JAvaScript and runs on top of Node.JS. It interacts with the vert.x event bus using the SockJS bridge exposed by the frontend application.
 
