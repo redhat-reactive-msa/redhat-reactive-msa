@@ -1,0 +1,17 @@
+## Simulating a failure
+
+To simulate a failure, take one of the greeting service and reduce the number of pods to 0. Thus, the addresses the service handled on the event bus won't be listened / managed anymore.
+
+In the _browser as client_, failures are managed by the browser.
+In the _api gateway_, the failures are managed by the server using a reply timeout.
+In the _service chaining_, the failures are managed using a vert.x circuit breaker. You can check the state of the circuit breakers in the _circuit breaker_ view.
+
+For example, if you shutdown _namaste_, you are going to see:
+
+* `Error getting value from service namaste-service` in the _browser as client_
+* `D'oh! can't invoke namaste` in the _api gateway_
+* `namaste : failed!` in the _service chaining_
+
+Then, you can restore one pod of the service to go back to the "normal" state. Be aware that restoring the "normal" state may take a couple of seconds until it finishes to start, joins the cluster and becomes discoverable by the other services.
+
+On the service chaining, the failure may be handled earlier, as the circuit breaker protected the call to the next service may reach a timeout because the invocation are slowdown by the missing service. Check the circuit breaker view to see the circuit breaker state.

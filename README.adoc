@@ -1,4 +1,18 @@
 # Redhat Reactive Microservice demo
+http://developers.redhat.com
+:toc: macro
+:toc-title: Table of Contents
+:toclevels: 2
+:icons: font
+:data-uri:
+:source-highlighter: coderay
+
+This content is brought to you by http://developers.redhat.com - Register today!
+
+image::images/rhdevelopers.png[]
+
+Latest HTML:
+https://htmlpreview.github.io/?https://github.com/redhat-reactive-msa/redhat-reactive-msa/blob/master/readme.html
 
 This demo explains how you can build reactive microservices with Vert.x and Node.JS. The demo runs on Openshift v3.
 
@@ -21,6 +35,18 @@ toc::[]
 
 include::cdk-prepare.adoc[]
 
-TODO....
+include::service-frontend.adoc[]
+
+include::service-hello.adoc[]
+
+include::service-ola.adoc[]
+
+include::service-hola.adoc[]
+
+include::service-namaste.adoc[]
 
 include::service-bonjour.adoc[]
+
+include::simulating-failure.adoc[]
+
+include::scalability.adoc[]

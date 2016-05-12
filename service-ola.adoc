@@ -1,0 +1,31 @@
+## Deploy the ola microservice
+
+The ola microservice is developed in Groovy. It is invocable using the vert.x event bus, and handles:
+
+* messages on `ola` - replies with a _ola_ message
+* messages on `ola/chain` - invokes the next service of the chain and replies with the result + a _ola_ message. The invocation to the next service is protected using a circuit breaker.
+
+Choose one of the following options/approaches to deploy this microservice.
+
+### Option 1: Deploy using Fabric8 plugin
+
+Launch:
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/ola
+cd ola/
+mvn clean package docker:build fabric8:json fabric8:apply -Popenshift
+----
+
+### Option 2: Deploy project via oc CLI
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/ola
+cd ola/
+oc new-build --binary --name=ola -l app=ola
+mvn package; oc start-build ola --from-dir=. --follow
+oc new-app ola -l app=ola
+oc expose service ola
+----

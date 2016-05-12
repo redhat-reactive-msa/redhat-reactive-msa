@@ -1,0 +1,31 @@
+## Deploy the namaste microservice
+
+The namaste microservice is developed in JavaScript. It is invocable using the vert.x event bus, and handles:
+
+* messages on `namaste` - replies with a _namaste_ message
+* messages on `namaste/chain` - invokes the next service of the chain and replies with the result + a _namaste_ message. The invocation to the next service is protected using a circuit breaker.
+
+Choose one of the following options/approaches to deploy this microservice.
+
+### Option 1: Deploy using Fabric8 plugin
+
+Launch:
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/namaste
+cd namaste/
+mvn clean package docker:build fabric8:json fabric8:apply -Popenshift
+----
+
+### Option 2: Deploy project via oc CLI
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/namaste
+cd namaste/
+oc new-build --binary --name=namaste -l app=namaste
+mvn package; oc start-build namaste --from-dir=. --follow
+oc new-app namaste -l app=namaste
+oc expose service namaste
+----

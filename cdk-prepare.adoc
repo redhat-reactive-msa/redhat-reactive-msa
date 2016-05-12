@@ -69,3 +69,11 @@ Now that Openshift should run, create a new project with:
 ----
 oc new-project reactive-msa
 ----
+
+If you plan to use the Fabric8 Maven plugin to deploy the microservices, you may need to execute:
+
+[source]
+----
+export FABRIC8_PROFILES=kubernetes
+export KUBERNETES_MASTER=https://10.1.2.2:8443/
+----

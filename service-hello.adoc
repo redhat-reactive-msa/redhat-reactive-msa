@@ -1,0 +1,30 @@
+## Deploy the hello microservice
+
+The hello microservice is developed in Java. It is invocable using the vert.x event bus, and handles:
+
+* messages on `hello` - replies with a _hello_ message
+* messages on `hello/chain` - invokes the next service of the chain and replies with the result + a _hello_ message. The invocation to the next service is protected using a circuit breaker.
+
+Choose one of the following options/approaches to deploy this microservice.
+
+### Option 1: Deploy using Fabric8 plugin
+
+Launch:
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/hello
+cd hello/
+mvn clean package docker:build fabric8:json fabric8:apply -Popenshift
+----
+
+### Option 2: Deploy project via oc CLI
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/hello
+cd hello/
+oc new-build --binary --name=hello -l app=hello
+mvn package; oc start-build hello --from-dir=. --follow
+oc new-app hello -l app=hello
+----

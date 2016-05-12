@@ -1,0 +1,5 @@
+## Scalability
+
+To scale your services, you just increase the number of pods of the service. Vert.x automatically implement a round-robin to balance the messages among the set of pods.
+
+So, for example, if you increase the number of pods of _hello_ to 2. Vert.x dispatches the first message on one pod, the second one on the other one, and so on.

@@ -1,0 +1,35 @@
+## Deploy the frontend
+
+The frontend microservice provides a UI to run the demo. It also configures the
+ SockJS bridge for the event bus.
+
+Choose one of the following options/approaches to deploy this microservice.
+
+### Option 1: Deploy using Fabric8 plugin
+
+Launch:
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/frontend
+cd frontend/
+mvn clean package docker:build fabric8:json fabric8:apply -Popenshift
+----
+
+### Option 2: Deploy project via oc CLI
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/frontend
+cd frontend/
+oc new-build --binary --name=frontend -l app=frontend
+mvn package; oc start-build frontend --from-dir=. --follow
+oc new-app frontend -l app=frontend
+oc expose service frontend
+----
+
+### Access the frontend
+
+In your browser, open: http://frontend-reactive-msa.rhel-cdk.10.1.2.2.xip.io/
+
+As there are no other microservices deployed, service invocations fail.
