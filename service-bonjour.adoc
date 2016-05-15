@@ -11,6 +11,7 @@ cd bonjour/
 oc new-build --binary --name=bonjour -l app=bonjour
 npm install; oc start-build bonjour --from-dir=. --follow
 oc new-app bonjour -l app=bonjour
+oc expose service bonjour
 ----
 
 You should now have the bonjour microservice deployed and running.

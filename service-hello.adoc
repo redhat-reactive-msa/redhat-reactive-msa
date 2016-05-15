@@ -27,4 +27,5 @@ cd hello/
 oc new-build --binary --name=hello -l app=hello
 mvn package; oc start-build hello --from-dir=. --follow
 oc new-app hello -l app=hello
+oc expose service hello
 ----

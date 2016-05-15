@@ -821,7 +821,8 @@ mvn clean package docker:build fabric8:json fabric8:apply -Popenshift</code></pr
 cd hello/
 oc new-build --binary --name=hello -l app=hello
 mvn package; oc start-build hello --from-dir=. --follow
-oc new-app hello -l app=hello</code></pre>
+oc new-app hello -l app=hello
+oc expose service hello</code></pre>
 </div>
 </div>
 </div>
@@ -982,7 +983,8 @@ oc expose service namaste</code></pre>
 cd bonjour/
 oc new-build --binary --name=bonjour -l app=bonjour
 npm install; oc start-build bonjour --from-dir=. --follow
-oc new-app bonjour -l app=bonjour</code></pre>
+oc new-app bonjour -l app=bonjour
+oc expose service bonjour</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1039,7 +1041,7 @@ In the <em>service chaining</em>, the failures are managed using a vert.x circui
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-05-12 10:49:37 CEST
+Last updated 2016-05-12 10:51:14 CEST
 </div>
 </div>
 </body>
