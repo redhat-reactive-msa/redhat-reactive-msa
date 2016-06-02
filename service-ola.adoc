@@ -27,5 +27,5 @@ cd ola/
 oc new-build --binary --name=ola -l app=ola
 mvn package; oc start-build ola --from-dir=. --follow
 oc new-app ola -l app=ola
-oc expose service ola
+oc expose service ola -l vertx-cluster=true
 ----

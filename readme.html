@@ -719,8 +719,14 @@ eval "$(vagrant service-manager env docker)"</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>oc new-project reactive-msa</code></pre>
+<pre class="CodeRay highlight"><code>oc new-project reactive-msa
+oc policy add-role-to-user view openshift-dev -n reactive-msa
+oc policy add-role-to-group view system:serviceaccounts -n reactive-msa</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The two last instructions give access to the Kubernetes service registry in order to let the different services
+discover each other.</p>
 </div>
 <div class="paragraph">
 <p>If you plan to use the Fabric8 Maven plugin to deploy the microservices, you may need to execute:</p>
@@ -766,7 +772,7 @@ cd frontend/
 oc new-build --binary --name=frontend -l app=frontend
 mvn package; oc start-build frontend --from-dir=. --follow
 oc new-app frontend -l app=frontend
-oc expose service frontend</code></pre>
+oc expose service frontend -l vertx-cluster=true</code></pre>
 </div>
 </div>
 </div>
@@ -822,7 +828,7 @@ cd hello/
 oc new-build --binary --name=hello -l app=hello
 mvn package; oc start-build hello --from-dir=. --follow
 oc new-app hello -l app=hello
-oc expose service hello</code></pre>
+oc expose service hello -l vertx-cluster=true</code></pre>
 </div>
 </div>
 </div>
@@ -869,7 +875,7 @@ cd ola/
 oc new-build --binary --name=ola -l app=ola
 mvn package; oc start-build ola --from-dir=. --follow
 oc new-app ola -l app=ola
-oc expose service ola</code></pre>
+oc expose service ola -l vertx-cluster=true</code></pre>
 </div>
 </div>
 </div>
@@ -915,7 +921,7 @@ mvn clean package docker:build fabric8:json fabric8:apply -Popenshift</code></pr
 cd hola/
 oc new-build --binary --name=hola -l app=hola
 mvn package; oc start-build hola --from-dir=. --follow
-oc new-app hola -l app=hola</code></pre>
+oc new-app hola -l app=hola -l vertx-cluster=true</code></pre>
 </div>
 </div>
 </div>
@@ -962,7 +968,7 @@ cd namaste/
 oc new-build --binary --name=namaste -l app=namaste
 mvn package; oc start-build namaste --from-dir=. --follow
 oc new-app namaste -l app=namaste
-oc expose service namaste</code></pre>
+oc expose service namaste -l vertx-cluster=true</code></pre>
 </div>
 </div>
 </div>

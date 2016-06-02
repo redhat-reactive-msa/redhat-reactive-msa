@@ -27,5 +27,5 @@ cd namaste/
 oc new-build --binary --name=namaste -l app=namaste
 mvn package; oc start-build namaste --from-dir=. --follow
 oc new-app namaste -l app=namaste
-oc expose service namaste
+oc expose service namaste -l vertx-cluster=true
 ----

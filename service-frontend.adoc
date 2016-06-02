@@ -25,7 +25,7 @@ cd frontend/
 oc new-build --binary --name=frontend -l app=frontend
 mvn package; oc start-build frontend --from-dir=. --follow
 oc new-app frontend -l app=frontend
-oc expose service frontend
+oc expose service frontend -l vertx-cluster=true
 ----
 
 ### Access the frontend

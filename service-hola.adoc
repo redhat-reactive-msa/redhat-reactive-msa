@@ -26,5 +26,5 @@ git clone https://github.com/redhat-reactive-msa/hola
 cd hola/
 oc new-build --binary --name=hola -l app=hola
 mvn package; oc start-build hola --from-dir=. --follow
-oc new-app hola -l app=hola
+oc new-app hola -l app=hola -l vertx-cluster=true
 ----

@@ -68,7 +68,12 @@ Now that Openshift should run, create a new project with:
 [source]
 ----
 oc new-project reactive-msa
+oc policy add-role-to-user view openshift-dev -n reactive-msa
+oc policy add-role-to-group view system:serviceaccounts -n reactive-msa
 ----
+
+The two last instructions give access to the Kubernetes service registry in order to let the different services
+discover each other.
 
 If you plan to use the Fabric8 Maven plugin to deploy the microservices, you may need to execute:
 
