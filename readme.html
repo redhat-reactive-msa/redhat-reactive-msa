@@ -587,6 +587,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_create_the_project">Create the project</a></li>
 </ul>
 </li>
+<li><a href="#_deploy_zookeeper">Deploy Zookeeper</a></li>
 <li><a href="#_deploy_the_frontend">Deploy the frontend</a>
 <ul class="sectlevel2">
 <li><a href="#_option_1_deploy_using_fabric8_plugin">Option 1: Deploy using Fabric8 plugin</a></li>
@@ -737,6 +738,27 @@ discover each other.</p>
 export KUBERNETES_MASTER=https://10.1.2.2:8443/</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_zookeeper">Deploy Zookeeper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Zookeeper is used to maintain the Vert.x cluster. To deploy it just run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>git clone https://github.com/redhat-reactive-msa/zookeeper
+cd zookeeper/
+oc new-build --binary --name=zookeeper -l app=zookeeper
+oc start-build zookeeper --from-dir=. --follow
+oc new-app zookeeper -l app=zookeeper
+oc expose service zookeeper</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, if you launch <code>oc get pods</code>, you should see a <code>zookeeper</code> pod running.</p>
 </div>
 </div>
 </div>
@@ -1047,7 +1069,7 @@ In the <em>service chaining</em>, the failures are managed using a vert.x circui
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-05-12 10:51:14 CEST
+Last updated 2016-09-15 15:50:04 CEST
 </div>
 </div>
 </body>
