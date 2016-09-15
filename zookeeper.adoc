@@ -1,0 +1,17 @@
+## Deploy Zookeeper
+
+Zookeeper is used to maintain the Vert.x cluster. To deploy it just run the following commands:
+
+[source]
+----
+git clone https://github.com/redhat-reactive-msa/zookeeper
+cd zookeeper/
+oc new-build --binary --name=zookeeper -l app=zookeeper
+oc start-build zookeeper --from-dir=. --follow
+oc new-app zookeeper -l app=zookeeper
+oc expose service zookeeper
+----
+
+Then, if you launch `oc get pods`, you should see a `zookeeper` pod running.
+
+

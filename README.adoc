@@ -35,6 +35,8 @@ toc::[]
 
 include::cdk-prepare.adoc[]
 
+include::zookeeper.adoc[]
+
 include::service-frontend.adoc[]
 
 include::service-hello.adoc[]
